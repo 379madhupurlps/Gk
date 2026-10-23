@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>সাধাৰণ জ্ঞান কুইজ - পঞ্চম শ্ৰেণী</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🏆 সাধাৰণ জ্ঞান কুইজ</h1>
+  <p>পঞ্চম শ্ৰেণী • দলীয় প্ৰতিযোগিতা</p>
+</header>
+
+<main>
+  <!-- সেটআপ -->
+  <section id="setup" class="screen">
+    <div class="card">
+      <h2>খেল আৰম্ভ কৰক</h2>
+
+      <label>দলৰ সংখ্যা
+        <input type="number" id="groupCount" min="2" max="10" value="4">
+      </label>
+      <div id="groupNames" class="grid"></div>
+
+      <div class="grid">
+        <label>প্ৰতিটো উত্তৰৰ সময় (ছেকেণ্ড)
+          <input type="number" id="timeLimit" min="5" max="180" value="30">
+        </label>
+        <label>প্ৰথম দলে শুদ্ধ উত্তৰ দিলে নম্বৰ
+          <input type="number" id="fullMarks" min="1" max="100" value="10">
+        </label>
+        <label>পাছ হৈ অহা দলে শুদ্ধ উত্তৰ দিলে নম্বৰ
+          <input type="number" id="passMarks" min="0" max="100" value="5">
+        </label>
+        <label>প্ৰশ্নৰ সংখ্যা
+          <input type="number" id="qCount" min="1" value="20">
+        </label>
+      </div>
+
+      <h3>বিষয় বাছনি কৰক</h3>
+      <div id="cats" class="cats"></div>
+
+      <label class="check">
+        <input type="checkbox" id="noRepeat" checked>
+        আগতে সোধা প্ৰশ্ন পুনৰ নাসুধিব
+      </label>
+      <p class="muted" id="poolInfo"></p>
+
+      <div class="row">
+        <button class="btn primary big" id="startBtn">▶ খেল আৰম্ভ কৰক</button>
+        <button class="btn" id="resetUsed">সোধা প্ৰশ্নৰ তালিকা মচক</button>
+        <label class="btn file">📂 নতুন প্ৰশ্ন যোগ কৰক (JSON)
+          <input type="file" id="importFile" accept=".json" hidden>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- খেল -->
+  <section id="game" class="screen hidden">
+    <div class="topbar">
+      <span id="qNo"></span>
+      <span id="qCat" class="tag"></span>
+      <button class="btn small" id="endEarly">খেল শেষ কৰক</button>
+    </div>
+
+    <div id="groups" class="groups"></div>
+
+    <div class="card">
+      <div class="turn" id="turnText"></div>
+      <div class="timerWrap">
+        <div class="timerBar"><div id="timerFill"></div></div>
+        <div id="timerNum">30</div>
+        <button class="btn small" id="pauseBtn">⏸</button>
+      </div>
+      <h2 id="question" class="question"></h2>
+      <div id="options" class="options"></div>
+      <div id="message" class="message"></div>
+      <div class="row">
+        <button class="btn warn" id="passBtn">⏭ পাছ (পৰৱৰ্তী দললৈ)</button>
+        <button class="btn primary hidden" id="nextBtn">পৰৱৰ্তী প্ৰশ্ন ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ফলাফল -->
+  <section id="end" class="screen hidden">
+    <div class="card center">
+      <h2>🎉 খেল শেষ!</h2>
+      <h3 id="winner"></h3>
+      <ol id="finalBoard" class="board"></ol>
+      <button class="btn primary big" id="againBtn">নতুনকৈ খেলক</button>
+    </div>
+  </section>
+</main>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
